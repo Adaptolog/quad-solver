@@ -2,6 +2,8 @@
 
 # Quadratic Equation Solver
 
+Author: student of group IM-33 Bondar Yaroslav
+
 This is a simple console application that solves quadratic equations of the form:
 
 ```
