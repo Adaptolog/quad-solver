@@ -16,3 +16,10 @@ def solve_quadratic(a, b, c):
         return [x]
     else:
         return []
+
+def get_float_input(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError as e:
+            print(f"Error. Expected a valid real number, got {e.args[0]} instead")
