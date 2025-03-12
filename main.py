@@ -25,9 +25,25 @@ def get_float_input(prompt):
             print(f"Error. Expected a valid real number, got {e.args[0]} instead")
 
 if __name__ == "__main__":
-    a = get_float_input("a = ")
-    b = get_float_input("b = ")
-    c = get_float_input("c = ")
+    if len(sys.argv) == 1:
+        a = get_float_input("a = ")
+        b = get_float_input("b = ")
+        c = get_float_input("c = ")
+
+    elif len(sys.argv) == 2:
+        try:
+            with open(sys.argv[1], "r") as file:
+                line = file.readline().strip()
+                a, b, c = map(float, line.split())
+        except FileNotFoundError:
+            print(f"file {sys.argv[1]} does not exist", file=sys.stderr)
+            sys.exit(1)
+        except ValueError:
+            print("invalid file format", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print("Usage: python main.py [filename]", file=sys.stderr)
+        sys.exit(1)
 
     roots = solve_quadratic(a, b, c)
     print(f"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0")
